@@ -3,6 +3,8 @@
 ## DEPENDENCIES
 Linux. Try running this on Windows at your own peril.
 
+Models are available at: https://uofc-my.sharepoint.com/:f:/g/personal/emily_garciavolk_ucalgary_ca/IgDeEwgZK4uhR6BKKOrLGUiYAZehPUhQGZ5A3WzhrBwwbqM?e=ATwkec
+
 ## INSTRUCTIONS
 
 ### SET-UP
