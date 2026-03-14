@@ -19,4 +19,7 @@ for i in range(n_samples):
             source = os.path.join(sample_dict[sample_name]["folder_slices"],f"{marker}")
             dest = os.path.join(sample_dict[sample_name]["folder_slices"],f"{marker}_compressed")
 
-            compress_TIFFs_parallel(source, dest, n_workers=5) 
+            if not os.listdir(source):
+                print("Folder is empty")
+            else:
+                compress_TIFFs_parallel(source, dest, n_workers=5) 

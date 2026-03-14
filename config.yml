@@ -3,7 +3,7 @@ samples:
   group: 'Nosip'
   age: "10.5" 
   folder_slices: '/mnt/BHNasLightsheet/Emily_Thesis_Winter2026/Nosip_August282025_29' # path to folder for sample
-  subfolder_nuclei: 'nuclear_compressed' # DONT CHANGE
+  subfolder_nuclei: 'nuclei_compressed' # DONT CHANGE
   subfolder_phh3: 'phh3_compressed' # DONT CHANGE
   subfolder_cc3: 'cc3_compressed' # DONT CHANGE
   resX: 911 # See 'info' in Zen Blue
