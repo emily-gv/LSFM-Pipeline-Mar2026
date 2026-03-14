@@ -24,7 +24,7 @@ def sort_files(folder_input):
 
     output_folders = {
         # <COMMON_END>.<FILETYPE> : os.path.join(folder_input, <MARKER>_C)
-        "c1.tif": os.path.join(folder_input, "nuclear"),
+        "c1.tif": os.path.join(folder_input, "nuclei"),
         "c2.tif": os.path.join(folder_input, "cc3"),
         "c3.tif": os.path.join(folder_input, "phh3")
     }
