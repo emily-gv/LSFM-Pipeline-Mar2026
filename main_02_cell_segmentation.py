@@ -21,7 +21,6 @@ import sys
 import torch
 from datetime import datetime
 
-from AuxFunctions.compress_TIFFs import compress_TIFFs_parallel
 
 warnings.filterwarnings("ignore")
 
@@ -31,7 +30,7 @@ warnings.filterwarnings("ignore")
 test_cuda(True) # TRUE or FALSE
 
 # Load YAML config, print sample stats, create sample lookup dictionary
-config_filename = "emilygv_config.yml" 
+config_filename = "config.yml" 
 config, sample_dict = load_config(config_filename)
 n_samples = len(sample_dict)
 
