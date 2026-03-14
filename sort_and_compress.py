@@ -16,4 +16,7 @@ for i in range(n_samples):
     for m in markers_dict:
         if m.get("flag_compress"):
             marker = m.get("name")
-            compress_TIFFs_parallel(os.path.join(sample_dict[sample_name]["folder_slices"],f"{marker}"), os.path.join(sample_dict[sample_name]["folder_slices"],f"{m}_compressed"),  n_workers=5) 
+            source = os.path.join(sample_dict[sample_name]["folder_slices"],f"{marker}")
+            dest = os.path.join(sample_dict[sample_name]["folder_slices"],f"{marker}_compressed")
+
+            compress_TIFFs_parallel(source, dest, n_workers=5) 
