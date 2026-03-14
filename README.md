@@ -52,7 +52,32 @@ Try running as is, and if it crashes severely try editting the following in main
 - os.environ['LD_LIBRARY_PATH']
 
 1. In terminal, run:
-    - ```python main_01_tissue_segmentation```
+    - ```python main_01_tissue_segmentation.py```
+
+### CELL SEGMENTATION
+
+1. For each marker you want to segment, toggle ```flag_segment:true``` in ```config.yml```
+
+    - If you want to track marker cells in the edge of the mesenchyme, toggle ```flag_mesenchyme```
+
+3. In terminal, run:
+    - ```python main_02_tissue_segmentation.py```
+
+### MANUAL CORRECTIONS
+
+1. Using 3DSlicer, create a mask of just the sample (ie. removing sedimentation)
+    - Save it as ```<original-tissue-TIFF-name>_Mask.tiff```
+    - eg. Aug28_2025_27_Step06a_Tissues_Mask.tiff
 
 
-    
+2. For each marker you want to remove sedimentation for, toggle ```flag_remove_sedimentation:true``` in ```config.yml``` (must have previously segmented cell marker)
+
+4. In terminal, run:
+    - ```python main_03_remove_sedimentation.py```
+
+3. Additionally, using 3DSlicer make a mask of the neural ectoderm (remove misc mesenchyme in the volume)
+    - Save it as ```<sample>_NE_corrected```
+    - eg. Aug28_2025_27_NE_corrected.tiff
+
+4. In terminal, run:
+    - ```python main_04_move_ne_to_mesenchyme.py```
