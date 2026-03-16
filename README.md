@@ -21,7 +21,7 @@ Subset of volumes to try the registration process: https://uofc-my.sharepoint.co
      - CLICK: 'Short Format'
        - NO CLICK: 'Use Channel Names'
 
-3. Setup your conda environment
+3. Setup your conda environment (this is a Linux-format environment with Linux-specific packages)
    - In terminal, navigate to the folder 'LSFM-Pipeline-Mar2026'
    - Run:
      - `conda env create -f lsfm_pipeline.yml`
