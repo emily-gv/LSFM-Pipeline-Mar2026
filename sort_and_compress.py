@@ -10,6 +10,7 @@ markers_dict = config["markers"]
 
 for i in range(n_samples):
     sample_name = list(sample_dict.keys())[i] 
+    print(f"Now running: {sample_name}")
     sort_input = sample_dict[sample_name]["folder_slices"]
     sort_files(sort_input)
 
