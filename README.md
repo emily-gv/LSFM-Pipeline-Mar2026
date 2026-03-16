@@ -6,7 +6,7 @@ Linux. Try running this on Windows at your own peril.
 
 Models are available at: https://uofc-my.sharepoint.com/:f:/g/personal/emily_garciavolk_ucalgary_ca/IgDeEwgZK4uhR6BKKOrLGUiYAZ7RzuBoWA8PQdZ1mWnbg3Y?e=Ilkdh6
 
-Subset of volumes to try the registration process: https://uofc-my.sharepoint.com/:f:/r/personal/lucasdaniel_lovercio_ucalgary_ca/Documents/Emily/Volumes_to_make_atlas?csf=1&web=1&e=PGjvZM
+Subset of volumes to try the registration process: [https://uofc-my.sharepoint.com/:f:/r/personal/lucasdaniel_lovercio_ucalgary_ca/Documents/Emily/Volumes_to_make_atlas?csf=1&web=1&e=PGjvZM](https://uofc-my.sharepoint.com/:f:/g/personal/lucasdaniel_lovercio_ucalgary_ca/IgCo5T0yGBPvR697UtUkcYQ7AcRoi0B_61iSLJPOumIs9Q4?e=pDqv07)
 
 Link to subset of images: https://uofc-my.sharepoint.com/:f:/g/personal/emily_garciavolk_ucalgary_ca/IgAH3rSB2olwSoDI3khwia1sATwWJqeZyWEmWHZJvpwOCSo?e=GjDBsL
 
