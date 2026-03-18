@@ -29,6 +29,9 @@ Link to subset of images: https://uofc-my.sharepoint.com/:f:/g/personal/emily_ga
      - `conda env create -f lsfm_pipeline.yml`
    - Activate the env using:
      - `conda activate lsfm-pipeline`
+   - With the env activated, run:
+      - `conda install -c conda-forge cudatoolkit=12.2`  
+      - `conda install -c conda-forge libxcb`
 
 4. Edit the config file
    - Edit the following:
@@ -38,6 +41,10 @@ Link to subset of images: https://uofc-my.sharepoint.com/:f:/g/personal/emily_ga
    - Edit the other things above the dotted line if you are adding a new marker
 
 5. Sort and compress your files
+   - If you're adding a new marker:
+      - In `sort_files.py`, below `"c3.tif": os.path.join(folder_input, "phh3")` add another
+         - Format should be `c4.tif` (or whatever number you're on) and replace `"phh3"` with your marker name the SAME as in the config
+
    - For all the marker images you want to compress, edit `config.yml` and under `markers:` set `flag_compress: True`
 
    - In terminal, run:
