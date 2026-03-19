@@ -30,7 +30,7 @@ Link to subset of images: https://uofc-my.sharepoint.com/:f:/g/personal/emily_ga
    - Activate the env using:
      - `conda activate lsfm-pipeline`
    - With the env activated, run:
-      - `conda install -c conda-forge cudatoolkit=12.2`  
+      - `conda install -c nvidia cuda-toolkit=12.2`
       - `conda install -c conda-forge libxcb`
 
 4. Edit the config file
