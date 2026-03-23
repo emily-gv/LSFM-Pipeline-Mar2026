@@ -6,7 +6,7 @@ Created on Tue Sep  3 16:25:20 2024
 @author: lucas
 """
 from TissueSegmentation.data_loader import get_files_from_path, get_images_from_path
-#from ManualCorrection.TIFFMultipage import functionReadTIFFMultipage, functionSaveTIFFMultipage
+from ManualCorrection.TIFFMultipage import functionReadTIFFMultipage, functionSaveTIFFMultipage
     # NOT USED IN main_01 OR main_02
 import cv2
 import numpy as np
@@ -173,22 +173,22 @@ def plot_IoU_folder_vs_folder(folder_slices_1, folder_slices_2, folder_sample, s
     
     return vector_IoU
 
-# def plot_IoU_tissue(path_tissue, folder_sample, sample_name, str_description, threshold=1):
-#     volume = functionReadTIFFMultipage(path_tissue, 8)
-#     [h,w,n_slices] = volume.shape
-#     vector_IoU = []
-#     for i in range(n_slices-1): 
-#         img_slice = volume[:,:,i]
-#         img_slice_next = volume[:,:,i+1]
+def plot_IoU_tissue(path_tissue, folder_sample, sample_name, str_description, threshold=1):
+    volume = functionReadTIFFMultipage(path_tissue, 8)
+    [h,w,n_slices] = volume.shape
+    vector_IoU = []
+    for i in range(n_slices-1): 
+        img_slice = volume[:,:,i]
+        img_slice_next = volume[:,:,i+1]
         
-#         iou = IoU(img_slice, img_slice_next, threshold)
-#         vector_IoU.append(iou)
+        iou = IoU(img_slice, img_slice_next, threshold)
+        vector_IoU.append(iou)
     
-#     fig_handle = plot_IoU(vector_IoU, str_description)
-#     str_fig_loss = os.path.join(folder_sample, sample_name  + '_IoU_'+str_description+'.png')
-#     fig_handle.savefig(str_fig_loss, dpi=300)
+    fig_handle = plot_IoU(vector_IoU, str_description)
+    str_fig_loss = os.path.join(folder_sample, sample_name  + '_IoU_'+str_description+'.png')
+    fig_handle.savefig(str_fig_loss, dpi=300)
     
-#     return vector_IoU
+    return vector_IoU
 
 # def get_IoU_tissue_window(path_tissue, path_iou_window, window_size = 20, bitdepth = 8):
         
