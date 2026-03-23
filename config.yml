@@ -1,16 +1,76 @@
 samples:
-- name: 'Aug28_2025_29'
+# - name: 'Feb2026_9'
+#   group: 'Nosip'
+#   age: "10.5"
+#   folder_slices: '/home/emily/Desktop/BHNasLightsheet/Emily_Thesis_Winter2026/nosip_sample9_feb2026_test_highlaser'
+#   subfolder_nuclei: 'nuclei_compressed'
+#   subfolder_phh3: 'phh3_compressed'
+#   subfolder_cc3: 'cc3_compressed'
+#   resX: 911
+#   resY: 911
+#   resZ: 2917
+# - name: 'Feb2026_10'
+#   group: 'Nosip'
+#   age: "10.5"
+#   folder_slices: '/home/emily/Desktop/BHNasLightsheet/Emily_Thesis_Winter2026/nosip_sample10_feb2026_test_highlaser'
+#   subfolder_nuclei: 'nuclei_compressed'
+#   subfolder_phh3: 'phh3_compressed'
+#   subfolder_cc3: 'cc3_compressed'
+#   resX: 911
+#   resY: 911
+#   resZ: 2917
+# - name: 'Feb2026_11'
+#   group: 'Nosip'
+#   age: "10.5"
+#   folder_slices: '/home/emily/Desktop/BHNasLightsheet/Emily_Thesis_Winter2026/nosip_sample11_feb2026_test_highlaser'
+#   subfolder_nuclei: 'nuclei_compressed'
+#   subfolder_phh3: 'phh3_compressed'
+#   subfolder_cc3: 'cc3_compressed'
+#   resX: 911
+#   resY: 911
+#   resZ: 2917
+- name: 'Feb2026_7'
   group: 'Nosip'
-  age: "10.5" 
-  folder_slices: '/mnt/BHNasLightsheet/Emily_Thesis_Winter2026/Nosip_August282025_29' # path to folder for sample
-  subfolder_nuclei: 'nuclei_compressed' # DONT CHANGE
-  subfolder_phh3: 'phh3_compressed' # DONT CHANGE
-  subfolder_cc3: 'cc3_compressed' # DONT CHANGE
-  resX: 911 # See 'info' in Zen Blue
-  resY: 911 # See 'info' in Zen Blue
-  resZ: 2917 # See 'info' in Zen Blue
+  age: "10.5"
+  folder_slices: ''
+  subfolder_nuclei: 'nuclei_compressed'
+  subfolder_phh3: 'phh3_compressed'
+  subfolder_cc3: 'cc3_compressed'
+  resX: 911
+  resY: 911
+  resZ: 2917
+- name: 'Feb2026_6'
+  group: 'Nosip'
+  age: "10.5"
+  folder_slices: ''
+  subfolder_nuclei: 'nuclei_compressed'
+  subfolder_phh3: 'phh3_compressed'
+  subfolder_cc3: 'cc3_compressed'
+  resX: 911
+  resY: 911
+  resZ: 2917
+- name: 'Feb2026_8'
+  group: 'Nosip'
+  age: "10.5"
+  folder_slices: ''
+  subfolder_nuclei: 'nuclei_compressed'
+  subfolder_phh3: 'phh3_compressed'
+  subfolder_cc3: 'cc3_compressed'
+  resX: 911
+  resY: 911
+  resZ: 2917
+- name: 'nosip_sample5_feb2026_test_highlaser'
+  group: 'Nosip'
+  age: "10.5"
+  folder_slices: ''
+  subfolder_nuclei: 'nuclei_compressed'
+  subfolder_phh3: 'phh3_compressed'
+  subfolder_cc3: 'cc3_compressed'
+  resX: 911
+  resY: 911
+  resZ: 2917
 
-folder_output: '/home/emily/Desktop/OUTPUT' # 
+folder_output: '/home/emily/Desktop/OUTPUT_HIGHLASER/' # 
 folder_CNN_architectures: '/home/emily/Documents/LSFM-Segmentation-Refactoring/Models' #
 
 filename_CNN_tissues: 'unet5levels_tissues_2.15' #
@@ -35,10 +95,10 @@ markers:
 - name: 'cc3'
   window_cellpose: 1024
   flag_compress: True
-  flag_segment: False
+  flag_segment: True
   flag_mesenchyme: False
-  flag_remove_sedimentation: False
-  flag_cell_density: False
+  flag_remove_sedimentation: True
+  flag_cell_density: True
 
 
 #---------------------------------------------------------------------------
@@ -155,6 +215,14 @@ dest_file_cc3_density_isotropic:   "_Step41a_CC3_density_isotropic_75.tiff"
 
 # FILES MAIN_06
 flag_mirror_volumes: true
+flag_skip_mirroring: False
+flag_skip_reg_lm: False
+
+flag_compute_similarity_all_volumes: False
+flag_skip_reg_sim_intensity: False
+flag_skip_reg_affine_intensity: False
+flag_skip_reg_syn_intensity: False
+
 ending_mirror_volumes: "_mirrored"
 ending_lms:              "_38lms.csv"
 
@@ -178,7 +246,12 @@ swap_pairs:
   - [21, 38]
 
 # LM Based Similarity Registration
-registration_type_LMbased: "Sim_E10.0" # "Or Rigid"
+
+scale_registration: 4
+reference_volume_tiff: "reference_space_3d.tiff"
+reference_landmarks: "template_38lms_canonical.csv"
+
+registration_type_LMbased: "Sim" # "Or Rigid"
 ending_lm_folder_output:       "_Step50a_to_Objective_Similarity"
 ending_lm_registered_lms:    "_Step50a_38lms_to_Objective.csv"
 
@@ -192,7 +265,6 @@ ending_lm_transformation_inverse_tfm: "_Step50a_transf_inverse_to_Objective.tfm"
 # IMPORTANT: First in list must be tissue segmentation
 list_moving_volumes:
 - moving_volume: "dest_file_tiff_tissue_segmentation_ne_correction"
-- moving_volume: "dest_file_tiff_artifact_prediction_maskout_sedimentation"
 - moving_volume: "dest_file_tiff_ne_segmentation_ne_correction"
 - moving_volume: "dest_file_tiff_mes_segmentation_ne_correction"
 - moving_volume: "dest_file_tiff_diff_gen_maskout_sedimentation"
@@ -201,7 +273,6 @@ list_moving_volumes:
 # List of file endings
 list_moved_lm_volumes:
 - moved_volume: "_Step50b_Tissues.tiff"
-- moved_volume: "_Step50b_artifact_prediction.tiff"
 - moved_volume: "_Step50b_NE.tiff"
 - moved_volume: "_Step50b_Mes.tiff"
 - moved_volume: "_Step50c_DiffGen.tiff"
@@ -213,7 +284,6 @@ ending_sim_registered_lms: "_Step51b_38lms_sim_.csv"
 
 list_moved_sim_volumes:
 - moved_volume: "_Step51b_Tissues.tiff"
-- moved_volume: "_Step51b_artifact_prediction.tiff"
 - moved_volume: "_Step51b_NE.tiff"
 - moved_volume: "_Step51b_Mes.tiff"
 - moved_volume: "_Step51c_DiffGen.tiff"
@@ -225,7 +295,6 @@ ending_affine_registered_lms: "_Step52b_38lms_affine_.csv"
 
 list_moved_affine_volumes:
 - moved_volume: "_Step52b_Tissues.tiff"
-- moved_volume: "_Step52b_artifact_prediction.tiff"
 - moved_volume: "_Step52b_NE.tiff"
 - moved_volume: "_Step52b_Mes.tiff"
 - moved_volume: "_Step52c_DiffGen.tiff"
@@ -237,7 +306,6 @@ ending_syn_registered_lms:      "_Step53b_38lms_SyN_.csv"
 
 list_moved_syn_volumes:
 - moved_volume: "_Step53b_Tissues.tiff"
-- moved_volume: "_Step53b_artifact_prediction.tiff"
 - moved_volume: "_Step53b_NE.tiff"
 - moved_volume: "_Step53b_Mes.tiff"
 - moved_volume: "_Step53c_DiffGen.tiff"
@@ -247,7 +315,6 @@ list_moved_syn_volumes:
 
 list_atlases:
 - moved_volume: "_Step60b_Atlas_Tissues.tiff"
-- moved_volume: "_Step60b_Atlas_artifact_prediction.tiff"
 - moved_volume: "_Step60b_Atlas_NE.tiff"
 - moved_volume: "_Step60b_Atlas_Mes.tiff"
 - moved_volume: "_Step60c_Atlas_DiffGen.tiff"
