@@ -16,10 +16,12 @@ import numpy as np
 import yaml
 import time
 import ants
+import logging
+os.environ["QT_QPA_PLATFORM"] = "offscreen"
 
 #################### PARAMETERS ###############################
 
-with open("yml_files/config_yaml_registration_pipeline_registrations_1.yml", "r") as file:
+with open("config.yml", "r") as file:
     config = yaml.safe_load(file)
 
 vector_sample_name = [sample["name"] for sample in config["samples"]]    
@@ -66,7 +68,7 @@ n_samples = len(vector_sample_name)
 
 constDivide = 1
 
-# flag_mirror_volumes = True
+
 
 ################ INTENSITY-BASED SIMILARITY (ROT, TRANS, SCALING) REGISTRATION #####################
 
@@ -134,7 +136,7 @@ def correct_labels_3d(array, valid_labels):
     
     return corrected_array
 
-def register_images_sim_ants(fixed, moving, aff_iterations,affine_global):
+def register_images_sim_ants(fixed, moving, aff_iterations, affine_global):
     """Perform affine registration and return the transformation."""
     # Convert images to float32
     
@@ -150,7 +152,7 @@ def register_images_sim_ants(fixed, moving, aff_iterations,affine_global):
     tranform_back = reg1['invtransforms'][0]
     return affine1, tranform_back
 
-def register_images_affine_ants(fixed, moving, aff_iterations,affine_global):
+def register_images_affine_ants(fixed, moving, aff_iterations, affine_global):
     """Perform affine registration and return the transformation."""
 
     # Convert images to float32
@@ -284,7 +286,7 @@ def main():
                       ending_input_volumes = ending_LMbased_moved_volumes, \
                           ending_output_folder = config["ending_sim_folder_output"], ending_output_volumes = ending_Sim_moved_volumes, \
                               ending_input_landmarks = config["ending_lm_registered_lms"], ending_output_landmarks = config["ending_sim_registered_lms"], \
-                                  scale_registration = scale_registration, path_volume_mask_registration = '', type_reg_str = 'Sim', flag_skip_processing = config["flag_skip_reg_sim_intensity"],\
+                                  scale_registration = scale_registration, path_volume_mask_registration = '', type_reg_str = 'Sim', logger=logger, flag_skip_processing = config["flag_skip_reg_sim_intensity"],\
                                       flag_compute_similarity_all_volumes = config["flag_compute_similarity_all_volumes"])
     
         
@@ -295,7 +297,7 @@ def main():
                       ending_input_folder = config["ending_sim_folder_output"], ending_input_volumes = ending_Sim_moved_volumes, \
                           ending_output_folder = config["ending_affine_folder_output"], ending_output_volumes = ending_Affine_moved_volumes, \
                               ending_input_landmarks = config["ending_sim_registered_lms"], ending_output_landmarks = config["ending_affine_registered_lms"], \
-                                  scale_registration = scale_registration, path_volume_mask_registration = '', type_reg_str = 'Affine', flag_skip_processing = config["flag_skip_reg_affine_intensity"],\
+                                  scale_registration = scale_registration, path_volume_mask_registration = '', type_reg_str = 'Affine', logger=logger, flag_skip_processing = config["flag_skip_reg_affine_intensity"],\
                                       flag_compute_similarity_all_volumes = config["flag_compute_similarity_all_volumes"])
     
     print('----- SyN REG USING Intensity -----', flush = True)
@@ -304,7 +306,7 @@ def main():
                       ending_input_folder = config["ending_affine_folder_output"], ending_input_volumes = ending_Affine_moved_volumes, \
                           ending_output_folder = config["ending_syn_folder_output"], ending_output_volumes = ending_SyN_moved_volumes, \
                               ending_input_landmarks = config["ending_affine_registered_lms"], ending_output_landmarks = config["ending_syn_registered_lms"], \
-                                  scale_registration = scale_registration, type_reg_str = 'SyN', flag_skip_processing = config["flag_skip_reg_syn_intensity"],\
+                                  scale_registration = scale_registration, type_reg_str = 'SyN', logger=logger, flag_skip_processing = config["flag_skip_reg_syn_intensity"],\
                                       flag_compute_similarity_all_volumes = config["flag_compute_similarity_all_volumes"])
             
 
@@ -314,4 +316,5 @@ def main():
 # Using the special variable 
 # __name__
 if __name__=="__main__":
+    logger = logging.getLogger(__name__)
     main()
