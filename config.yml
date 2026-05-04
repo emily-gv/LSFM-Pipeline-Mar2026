@@ -1,3 +1,24 @@
+#---------------------------------------------------------------------------
+# TO ADD A NEW CELL MARKER: add an entry in 'markers' + uncomment the following, replacing pHH3 with marker of choice:
+# Ensure the capitalization of 'markers' entry is consistent with the capitalization below (eg. phh3 all lowercase in markers and folder_phh3_tiles)
+
+# Also, in sort_files.py add: "cXX.tif": os.path.join(folder_input, "<your_marker>")
+#---------------------------------------------------------------------------
+
+  # folder_phh3_tiles: "Step11_pHH3_tiles/Step12_pHH3_tiles" 
+  # folder_phh3_segmented_tiles_label: "Step22_pHH3_tiles_label" #
+  # folder_phh3_segmented_tiles_binary: "Step22_pHH3_tiles_binary" #
+  # folder_phh3_slices_label: "Step25b_pHH3_slices_label" # 
+  # folder_phh3_slices_binary: "Step25b_pHH3_slices_binary" #
+  # folder_phh3_masked_label: "Step25b_pHH3_masked_label" #
+  # folder_phh3_masked_binary: "Step25b_pHH3_masked_binary" #
+  # dest_file_phh3_label_tiff: "_Step26_phh3_label_raw.tiff" #
+  # dest_file_phh3_binary_tiff:  "_Step26_phh3_binary_raw.tiff" #
+  # dest_file_phh3_label_tiff_maskout_sedimentation:        "_Step33_pHH3_label.tiff"
+  # dest_file_phh3_binary_tiff_maskout_sedimentation:       "_Step33_pHH3_binary.tiff"
+
+  #---------------------------------------------------------------------------
+
 samples:
 # - name: 'Feb2026_9'
 #   group: 'Nosip'
@@ -9,68 +30,8 @@ samples:
 #   resX: 911
 #   resY: 911
 #   resZ: 2917
-# - name: 'Feb2026_10'
-#   group: 'Nosip'
-#   age: "10.5"
-#   folder_slices: '/home/emily/Desktop/BHNasLightsheet/Emily_Thesis_Winter2026/nosip_sample10_feb2026_test_highlaser'
-#   subfolder_nuclei: 'nuclei_compressed'
-#   subfolder_phh3: 'phh3_compressed'
-#   subfolder_cc3: 'cc3_compressed'
-#   resX: 911
-#   resY: 911
-#   resZ: 2917
-# - name: 'Feb2026_11'
-#   group: 'Nosip'
-#   age: "10.5"
-#   folder_slices: '/home/emily/Desktop/BHNasLightsheet/Emily_Thesis_Winter2026/nosip_sample11_feb2026_test_highlaser'
-#   subfolder_nuclei: 'nuclei_compressed'
-#   subfolder_phh3: 'phh3_compressed'
-#   subfolder_cc3: 'cc3_compressed'
-#   resX: 911
-#   resY: 911
-#   resZ: 2917
-- name: 'Feb2026_7'
-  group: 'Nosip'
-  age: "10.5"
-  folder_slices: ''
-  subfolder_nuclei: 'nuclei_compressed'
-  subfolder_phh3: 'phh3_compressed'
-  subfolder_cc3: 'cc3_compressed'
-  resX: 911
-  resY: 911
-  resZ: 2917
-- name: 'Feb2026_6'
-  group: 'Nosip'
-  age: "10.5"
-  folder_slices: ''
-  subfolder_nuclei: 'nuclei_compressed'
-  subfolder_phh3: 'phh3_compressed'
-  subfolder_cc3: 'cc3_compressed'
-  resX: 911
-  resY: 911
-  resZ: 2917
-- name: 'Feb2026_8'
-  group: 'Nosip'
-  age: "10.5"
-  folder_slices: ''
-  subfolder_nuclei: 'nuclei_compressed'
-  subfolder_phh3: 'phh3_compressed'
-  subfolder_cc3: 'cc3_compressed'
-  resX: 911
-  resY: 911
-  resZ: 2917
-- name: 'nosip_sample5_feb2026_test_highlaser'
-  group: 'Nosip'
-  age: "10.5"
-  folder_slices: ''
-  subfolder_nuclei: 'nuclei_compressed'
-  subfolder_phh3: 'phh3_compressed'
-  subfolder_cc3: 'cc3_compressed'
-  resX: 911
-  resY: 911
-  resZ: 2917
 
-folder_output: '/home/emily/Desktop/OUTPUT_HIGHLASER/' # 
+folder_output: '/home/emily/Desktop/' # 
 folder_CNN_architectures: '/home/emily/Documents/LSFM-Segmentation-Refactoring/Models' #
 
 filename_CNN_tissues: 'unet5levels_tissues_2.15' #
@@ -82,7 +43,7 @@ markers:
 - name: 'nuclei' # NO flag_cell_density for nuclei
   window_cellpose: 131
   flag_compress: True
-  flag_segment: False
+  flag_segment: True
   flag_mesenchyme: False
   flag_remove_sedimentation: False
 - name: 'phh3'
@@ -95,14 +56,14 @@ markers:
 - name: 'cc3'
   window_cellpose: 1024
   flag_compress: True
-  flag_segment: True
+  flag_segment: False
   flag_mesenchyme: False
   flag_remove_sedimentation: True
   flag_cell_density: True
 
 
 #---------------------------------------------------------------------------
-# DON'T EDIT PAST HERE (unless to add additional markers - see bottom)
+# DON'T EDIT PAST HERE 
 #---------------------------------------------------------------------------
 
 ### FOLDERS MAIN_01 ###
@@ -153,17 +114,17 @@ folder_phh3_masked_binary: "Step25b_pHH3_masked_binary" #
 dest_file_phh3_label_tiff: "_Step26_phh3_label_raw.tiff" #
 dest_file_phh3_binary_tiff:  "_Step26_phh3_binary_raw.tiff" #
 
-folder_cc3_tiles: "cc3_tiles" # maybe get rid of the subfolder(?)
+folder_cc3_tiles: "Step11_cc3_tiles/Step12_cc3_tiles" # maybe get rid of the subfolder(?)
 
-folder_cc3_segmented_tiles_label: "cc3_tiles_label" #
-folder_cc3_segmented_tiles_binary: "cc3_tiles_binary" #
-folder_cc3_slices_label: "cc3_slices_label" # 
-folder_cc3_slices_binary: "cc3_slices_binary" #
-folder_cc3_masked_label: "cc3_masked_label" #
-folder_cc3_masked_binary: "cc3_masked_binary" #
+folder_cc3_segmented_tiles_label: "Step22_cc3_tiles_label" #
+folder_cc3_segmented_tiles_binary: "Step22_cc3_tiles_binary" #
+folder_cc3_slices_label: "Step25b_cc3_slices_label" # 
+folder_cc3_slices_binary: "Step25b_cc3_slices_binary" #
+folder_cc3_masked_label: "Step25b_cc3_masked_label" #
+folder_cc3_masked_binary: "Step25b_cc3_masked_binary" #
 
-dest_file_cc3_label_tiff: "cc3_label_raw.tiff" #
-dest_file_cc3_binary_tiff:  "cc3_binary_raw.tiff" #
+dest_file_cc3_label_tiff: "_Step26_cc3_label_raw.tiff" #
+dest_file_cc3_binary_tiff:  "_Step26_cc3_binary_raw.tiff" #
 
 folder_nuclei_segmented_tiles_label: "Step26_nuclei_tiles_label" #
 folder_nuclei_segmented_tiles_binary: "Step26_nuclei_tiles_binary" #
@@ -180,26 +141,24 @@ folder_edge_mesen: "Step27_mesen_edge" #
 ## OUTPUT FILES MAIN_03
 
 # Manual correction mask - 3D slicer
-file_tiff_maskout_sedimentation: "_Step06a_Tissues_Mask.tiff"
+file_tiff_maskout_sedimentation: "_Step06a_Tissues_Mask.tiff" # previously "_Step30_sedimentation_mask.tiff"
 
-dest_file_tiff_tissue_segmentation_maskout_sedimentation:   "_Tissues_maskout_sedimentation.tiff"
-dest_file_tiff_ne_segmentation_maskout_sedimentation:       "_NE_maskout_sedimentation.tiff"
-dest_file_tiff_mes_segmentation_maskout_sedimentation:      "_Mes_maskout_sedimentation.tiff"
-dest_file_tiff_diff_gen_maskout_sedimentation:              "_DiffGen_maskout_sedimentation.tiff"
-dest_file_tiff_diff_gen_blur_maskout_sedimentation:         "_DiffGenBlur_maskout_sedimentation.tiff"
-dest_file_tiff_artifact_prediction_maskout_sedimentation:   "_artifact_prediction_maskout_sedimentation.tiff"
+dest_file_tiff_artifact_prediction_maskout_sedimentation:   "_Step31g_artifact_prediction.tiff"
+dest_file_tiff_tissue_segmentation_maskout_sedimentation:   "_Step36a_Tissues.tiff"
+dest_file_tiff_ne_segmentation_maskout_sedimentation:       "_Step36a_NE.tiff"
+dest_file_tiff_mes_segmentation_maskout_sedimentation:      "_Step36a_Mes.tiff"
+dest_file_tiff_diff_gen_maskout_sedimentation:              "_Step36b_DiffGen.tiff"
+dest_file_tiff_diff_gen_blur_maskout_sedimentation:         "_Step36c_DiffGenBlur.tiff"
 
-dest_file_nuclei_label_tiff_maskout_sedimentation:      "_nuclei_label_maskout_sedimentation.tiff"
-dest_file_nuclei_binary_tiff_maskout_sedimentation:     "_nuclei_binary_maskout_sedimentation.tiff"
-
-dest_file_phh3_label_tiff_maskout_sedimentation:        "_pHH3_label_maskout_sedimentation.tiff"
-dest_file_phh3_binary_tiff_maskout_sedimentation:       "_pHH3_binary_maskout_sedimentation.tiff"
-
-dest_file_cc3_label_tiff_maskout_sedimentation:        "_cc3_label_maskout_sedimentation.tiff"
-dest_file_cc3_binary_tiff_maskout_sedimentation:       "_cc3_binary_maskout_sedimentation.tiff"
+dest_file_nuclei_label_tiff_maskout_sedimentation:      "_Step33_nuclei_label.tiff"
+dest_file_nuclei_binary_tiff_maskout_sedimentation:     "_Step33_nuclei_binary.tiff"
+dest_file_phh3_label_tiff_maskout_sedimentation:        "_Step33_pHH3_label.tiff"
+dest_file_phh3_binary_tiff_maskout_sedimentation:       "_Step33_pHH3_binary.tiff"
+dest_file_cc3_label_tiff_maskout_sedimentation:        "_Step33_cc3_label.tiff"
+dest_file_cc3_binary_tiff_maskout_sedimentation:       "_Step33_cc3_binary.tiff"
 
 ## FILES MAIN_04
-file_tiff_ne_correction: "_NE_corrected.tiff"
+file_tiff_ne_correction: "_NE_corrected.tiff" #previously "_Step36a_NE_CORRECTED.tiff"
 dest_file_tiff_tissue_segmentation_ne_correction:   "_Step40a_Tissues.tiff"
 dest_file_tiff_ne_segmentation_ne_correction:       "_Step40a_NE.tiff"
 dest_file_tiff_mes_segmentation_ne_correction:      "_Step40a_Mes.tiff"
@@ -215,13 +174,13 @@ dest_file_cc3_density_isotropic:   "_Step41a_CC3_density_isotropic_75.tiff"
 
 # FILES MAIN_06
 flag_mirror_volumes: true
-flag_skip_mirroring: False
-flag_skip_reg_lm: False
+flag_skip_mirroring: True
+flag_skip_reg_lm: True
 
 flag_compute_similarity_all_volumes: False
-flag_skip_reg_sim_intensity: False
-flag_skip_reg_affine_intensity: False
-flag_skip_reg_syn_intensity: False
+flag_skip_reg_sim_intensity: True
+flag_skip_reg_affine_intensity: True
+flag_skip_reg_syn_intensity: True
 
 ending_mirror_volumes: "_mirrored"
 ending_lms:              "_38lms.csv"
@@ -247,9 +206,11 @@ swap_pairs:
 
 # LM Based Similarity Registration
 
-scale_registration: 4
+scale_registration: 6
 reference_volume_tiff: "reference_space_3d.tiff"
 reference_landmarks: "template_38lms_canonical.csv"
+
+name_reference: 'nosip_sample5_feb2026_test_highlaser'
 
 registration_type_LMbased: "Sim" # "Or Rigid"
 ending_lm_folder_output:       "_Step50a_to_Objective_Similarity"
@@ -267,16 +228,14 @@ list_moving_volumes:
 - moving_volume: "dest_file_tiff_tissue_segmentation_ne_correction"
 - moving_volume: "dest_file_tiff_ne_segmentation_ne_correction"
 - moving_volume: "dest_file_tiff_mes_segmentation_ne_correction"
-- moving_volume: "dest_file_tiff_diff_gen_maskout_sedimentation"
-- moving_volume: "dest_file_tiff_diff_gen_blur_maskout_sedimentation"
+- moving_volume: "dest_file_cc3_density_histnorm"
 
 # List of file endings
 list_moved_lm_volumes:
 - moved_volume: "_Step50b_Tissues.tiff"
 - moved_volume: "_Step50b_NE.tiff"
 - moved_volume: "_Step50b_Mes.tiff"
-- moved_volume: "_Step50c_DiffGen.tiff"
-- moved_volume: "_Step50c_DiffGenBlur.tiff"
+- moved_volume: "_Step50b_cc3_density_histnorm.tiff"
 
 # Similarity Segmentation-based registration:
 ending_sim_folder_output:       "_Step51_Sim"
@@ -286,8 +245,7 @@ list_moved_sim_volumes:
 - moved_volume: "_Step51b_Tissues.tiff"
 - moved_volume: "_Step51b_NE.tiff"
 - moved_volume: "_Step51b_Mes.tiff"
-- moved_volume: "_Step51c_DiffGen.tiff"
-- moved_volume: "_Step51c_DiffGenBlur.tiff"
+- moved_volume: "_Step51b_cc3_density_histnorm.tiff"
 
 # Affine Segmentation-based registration:
 ending_affine_folder_output:       "_Step52_Affine"
@@ -297,8 +255,7 @@ list_moved_affine_volumes:
 - moved_volume: "_Step52b_Tissues.tiff"
 - moved_volume: "_Step52b_NE.tiff"
 - moved_volume: "_Step52b_Mes.tiff"
-- moved_volume: "_Step52c_DiffGen.tiff"
-- moved_volume: "_Step52c_DiffGenBlur.tiff"
+- moved_volume: "_Step52b_cc3_density_histnorm.tiff"
 
 # SyN Segmentation-based registration:
 ending_syn_folder_output:    "_Step53_SyN"
@@ -308,8 +265,7 @@ list_moved_syn_volumes:
 - moved_volume: "_Step53b_Tissues.tiff"
 - moved_volume: "_Step53b_NE.tiff"
 - moved_volume: "_Step53b_Mes.tiff"
-- moved_volume: "_Step53c_DiffGen.tiff"
-- moved_volume: "_Step53c_DiffGenBlur.tiff"
+- moved_volume: "_Step53b_cc3_density_histnorm.tiff"
 
 # Atlases
 
@@ -317,20 +273,6 @@ list_atlases:
 - moved_volume: "_Step60b_Atlas_Tissues.tiff"
 - moved_volume: "_Step60b_Atlas_NE.tiff"
 - moved_volume: "_Step60b_Atlas_Mes.tiff"
-- moved_volume: "_Step60c_Atlas_DiffGen.tiff"
-- moved_volume: "_Step60c_Atlas_DiffGenBlur.tiff"
+- moved_volume: "_Step60b_Atlas_cc3_density_histnorm.tiff"
 
 
-## TO ADD A NEW CELL MARKER, add a flag + replace pHH3 with marker of choice:
-
-  # folder_phh3_tiles: "Step11_pHH3_tiles/Step12_pHH3_tiles" # maybe get rid of the subfolder(?)
-  # folder_phh3_segmented_tiles_label: "Step22_pHH3_tiles_label" #
-  # folder_phh3_segmented_tiles_binary: "Step22_pHH3_tiles_binary" #
-  # folder_phh3_slices_label: "Step25b_pHH3_slices_label" # 
-  # folder_phh3_slices_binary: "Step25b_pHH3_slices_binary" #
-  # folder_phh3_masked_label: "Step25b_pHH3_masked_label" #
-  # folder_phh3_masked_binary: "Step25b_pHH3_masked_binary" #
-  # dest_file_phh3_label_tiff: "_Step26_phh3_label_raw.tiff" #
-  # dest_file_phh3_binary_tiff:  "_Step26_phh3_binary_raw.tiff" #
-  # dest_file_phh3_label_tiff_maskout_sedimentation:        "_Step33_pHH3_label.tiff"
-  # dest_file_phh3_binary_tiff_maskout_sedimentation:       "_Step33_pHH3_binary.tiff"
