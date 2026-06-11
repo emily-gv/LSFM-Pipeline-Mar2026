@@ -24,6 +24,7 @@ Link to subset of images: https://uofc-my.sharepoint.com/:f:/g/personal/emily_ga
        - NO CLICK: 'Use Channel Names'
 
 3. Setup your conda environment (this is a Linux-format environment with Linux-specific packages)
+   - Follow the install instructions found at https://docs.conda.io/projects/conda/en/latest/user-guide/install/index.html
    - In terminal, navigate to the folder 'LSFM-Pipeline-Mar2026'
    - Run:
      - `conda env create -f lsfm_pipeline.yml`
