@@ -158,7 +158,7 @@ dest_file_cc3_label_tiff_maskout_sedimentation:        "_Step33_cc3_label.tiff"
 dest_file_cc3_binary_tiff_maskout_sedimentation:       "_Step33_cc3_binary.tiff"
 
 ## FILES MAIN_04
-file_tiff_ne_correction: "_NE_corrected.tiff" #previously "_Step36a_NE_CORRECTED.tiff"
+file_tiff_ne_correction: "_Step36a_NE_corrected.tiff" #previously "_Step36a_NE_CORRECTED.tiff"
 dest_file_tiff_tissue_segmentation_ne_correction:   "_Step40a_Tissues.tiff"
 dest_file_tiff_ne_segmentation_ne_correction:       "_Step40a_NE.tiff"
 dest_file_tiff_mes_segmentation_ne_correction:      "_Step40a_Mes.tiff"

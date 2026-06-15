@@ -85,8 +85,7 @@ Try running as is, and if it crashes severely try editing the following in main_
 
 4. Next, using 3DSlicer create a mask of the neural ectoderm (remove misc mesenchyme in the volume)
    - Edit the file `xx_Step36a_NE.tiff`
-   - Save it as `<sample>_NE_corrected` (note the lowercase)
-   - eg. Aug28_2025_27_NE_corrected.tiff
+   - Save it as `<sample>_Step36a_NE_corrected` (note the lowercase)
 
 5. In terminal, run:
    - `python main_04_move_ne_to_mesenchyme.py`
