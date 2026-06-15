@@ -75,7 +75,7 @@ Try running as is, and if it crashes severely try editing the following in main_
 ### MANUAL CORRECTIONS
 
 1. Using 3DSlicer, create a mask of just the sample (ie. removing sedimentation)
-   - Save it as `<original-tissue-TIFF-name>_Mask.tiff`
+   - Save it as `<original-tissue-TIFF-name>_Mask.tiff`, using the option 'Export visible segments to binary labelmap'
    - eg. Aug28_2025_27_Step06a_Tissues_Mask.tiff
 
 2. For each marker you want to remove sedimentation for, toggle `flag_remove_sedimentation:true` in `config.yml` (must have previously segmented cell marker)
@@ -85,7 +85,7 @@ Try running as is, and if it crashes severely try editing the following in main_
 
 4. Next, using 3DSlicer create a mask of the neural ectoderm (remove misc mesenchyme in the volume)
    - Edit the file `xx_Step36a_NE.tiff`
-   - Save it as `<sample>_NE_corrected`
+   - Save it as `<sample>_NE_corrected` (note the lowercase)
    - eg. Aug28_2025_27_NE_corrected.tiff
 
 5. In terminal, run:
