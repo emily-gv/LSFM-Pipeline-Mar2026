@@ -16,7 +16,8 @@ def compute_image_overlay(image1, image2, output_folder, str_description):
         output[mask1 & mask2] = [0,255,255] # yellow
         output[mask1 & ~mask2] = [0,0,255] # red
         output[~mask1 & mask2] = [0,255,0] # green
-        output_path = os.path.join(output_folder, image1 + str_description + '_merged.png')
+        base = os.path.splitext(os.path.basename(image1))[0]
+        output_path = os.path.join(output_folder, base + '_' + str_description + '_merged.png')
         cv2.imwrite(output_path, output)
 
 
@@ -26,7 +27,7 @@ def compute_image_overlay_folder(folder_slices_1, folder_slices_2, output_folder
     n_list_slices_1 = len(list_slices_1)
     n_list_slices_2 = len(list_slices_2)
     if n_list_slices_1 != n_list_slices_2:
-        print('Cannot compute IoU between folder with different number of slices')
+        print('Folders with different number of slices')
         print('folder 1:' + str(n_list_slices_1))
         print('folder 2:' + str(n_list_slices_2))
         return
