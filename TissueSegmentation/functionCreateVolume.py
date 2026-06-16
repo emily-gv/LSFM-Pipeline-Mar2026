@@ -17,7 +17,7 @@ def functionCreateVolume(folder_input, dest_file_tiff, resX = 911, resY = 911, r
     for file in os.listdir(folder_input):
         # os.chdir(currentDir + filesep + source_folder)
         fileExtension = os.path.splitext(file)
-        if fileExtension[1] == ".png":
+        if (fileExtension[1] == ".png") or (fileExtension[1] == ".j2k") or (fileExtension[1] == ".tiff") or (fileExtension[1] == ".tif"):
             tiffs.append(''.join(fileExtension))
     tiffs = sorted(tiffs)
 
