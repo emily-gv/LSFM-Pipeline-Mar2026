@@ -23,10 +23,10 @@ def sort_files(folder_input):
     nFiles = len(listing)
 
     output_folders = {
-        # <COMMON_END>.<FILETYPE> : os.path.join(folder_input, <MARKER>_C)
         "c1.tif": os.path.join(folder_input, "nuclei"),
         "c2.tif": os.path.join(folder_input, "cc3"),
-        "c3.tif": os.path.join(folder_input, "phh3")
+        "c3.tif": os.path.join(folder_input, "phh3") # ADD A COMMA IF ADDING A MARKER
+        # "c4.tif": os.path.join(folder_input, "marker-name")
     }
 
     # Create output folders if they don't exist
