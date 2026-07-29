@@ -44,7 +44,7 @@ def function_encode_annotation_semantic(fullpath_orig, filename, folder_dest,
     labels[is_red] = 1
     labels[is_green] = 2
 
-    fullpath_dest = os.path.join(folder_dest, filename + '_mask.png')
+    fullpath_dest = os.path.join(folder_dest, filename + '.png')
     mask_encoded = Image.fromarray(labels)
     mask_encoded.save(fullpath_dest)
 
@@ -73,10 +73,10 @@ if __name__ == "__main__":
     #     folder_masks="/home/emilygv/Desktop/INTER_OBS_ANALYSIS/TestSet_Obs2_3000",
     # )
     # output_folder = "/home/emily/Desktop/TestSet_Atiksha_3000"
-    output_folder = "/home/emily/Desktop/June2026Annotations_Emily_complete_encoded3000"
+    output_folder = "/home/emily/Desktop/Model_retraining_workspace/June2026Annotations_Beth_complete_encoded3000"
     if not os.path.exists(output_folder):
         os.makedirs(output_folder)
-    input_folder = "/home/emily/Desktop/June2026Annotations_Emily_complete"
+    input_folder = "/home/emily/Desktop/Model_retraining_workspace/June2026Annotations_Beth_complete"
 
     function_encode_annotations(input_folder, output_folder)
 
