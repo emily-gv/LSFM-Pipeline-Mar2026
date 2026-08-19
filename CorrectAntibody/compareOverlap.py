@@ -82,6 +82,9 @@ def correct_shift(folder_slices_toShift, output_folder, shift_value):
         folder_slices_toShift (str): Full filepath
         output_folder (str): Full filepath
         shift_value (int): Manually determined pixels to shift by
+
+
+    Outputs a folder of BINARY images.
     """
     # output = np.zeros_like(image)
     # output[:-shift_value, :] = image[shift_value:, :]
