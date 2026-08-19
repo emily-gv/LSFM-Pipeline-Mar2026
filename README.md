@@ -10,7 +10,10 @@ Subset of volumes to try the registration process: [https://uofc-my.sharepoint.c
 
 Link to subset of images: https://uofc-my.sharepoint.com/:f:/g/personal/emily_garciavolk_ucalgary_ca/IgAH3rSB2olwSoDI3khwia1sATwWJqeZyWEmWHZJvpwOCSo?e=GjDBsL
 
-## INSTRUCTIONS
+## COMPREHENSIVE INSTRUCTIONS
+1. Follow steps as outlined in LSFM-Pipeline-Guide.pdf
+
+## BASIC INSTRUCTIONS
 
 ### SET-UP
 
