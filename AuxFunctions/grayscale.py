@@ -4,8 +4,8 @@ import cv2
 import numpy as np
 from functionPercNorm import functionPercNorm  
 
-folderVolume = "/home/emily/Desktop/TrainingSet"
-folderDest = "/home/emily/Desktop/TrainingSet_Cropped"
+folderVolume = "/mnt/BHNasLightsheet/Emily_Summer2026/Retraining_Slices/ModelTrainingImages_May2026/TrainingSet_Cropped"
+folderDest = "/home/emily/Desktop/Model_retraining_workspace/PNG_Good"
 
 os.makedirs(folderDest, exist_ok=True)
 
@@ -30,7 +30,7 @@ for img_name in listing:
     img_ubyte = img_as_ubyte(imgNorm) #idk why Script1 uses im_as_ubyte(rgb)
 
     # Save image
-    name = img_name + '_Tissue' + fileFormat 
+    name = img_name 
     save_path = os.path.join(folderDest, name) # instead of chdir
     io.imsave(save_path, img_ubyte, check_contrast=False)
 
