@@ -98,3 +98,6 @@ Try running as is, and if it crashes severely try editing the following in main_
 - Python. To create a Virtual Environment using lsfm_pipeline.yml, you can follow the example: https://github.com/lucaslovercio/ACHRI_Workshop_Cellpose/tree/main/environments (avoid Step 2)
 - 3DSlicer
 - Recommended: Paraview
+   - If you're using newer versions of Ubuntu with only Wayland, I got Paraview to work by opening it through terminal running the following commands
+   `export HWLOC_COMPONENTS=-gl`
+   `paraview`
