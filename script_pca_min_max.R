@@ -1,6 +1,6 @@
 # Authorship of this code belongs to Marta, I just repurposed it for the Nosip analysis
 
-setwd('/home/emily/Desktop/SUMMER_2026/Sim/Sim/Affine/SyN')
+setwd('/home/emily/Desktop/SUMMER_2026/Sim/Sim/Affine/SyN') # Set this as the path to your own Syn folder for ease of use
 
 library(Morpho)
 
