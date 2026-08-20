@@ -86,7 +86,7 @@ for i in range(n_volumes):
         print("Sample with unknown group")
         sys.exit(1)
         
-        
+ 
 matrix_x = np.vstack([arr.ravel() for arr in X])
 print("Shape", matrix_x.shape)
 # X = np.array(matrix_x).squeeze(-1)
@@ -100,6 +100,8 @@ print("Hello", np.array(X_pca).shape)
 pc1 = X_pca[:, 0]
 pc2 = X_pca[:, 1]
 pc3 = X_pca[:, 2]
+
+############################## 3D PCA ########################################        
 
 fig = plt.figure(figsize=(10, 8))
 ax = fig.add_subplot(111, projection='3d') # Create 3D axes
@@ -127,6 +129,7 @@ plt.title("3D PCA: Apoptosis")
 
 plt.savefig(os.path.join(folder, "PCA_3D_apoptosis.png"), dpi=300)
 
+############################## PC1 vs PC2 ########################################       
 
 y = np.array(y)
 unique_groups = np.unique(y)
@@ -144,7 +147,32 @@ plt.title("PCA: PC1 vs PC2")
 
 plt.tight_layout()
 
-plt.savefig(os.path.join(folder, "PCA_apoptosis_" + subfolder_masked_output + ".png"), dpi=300, bbox_inches='tight')   # <-- save high resolution
+plt.savefig(os.path.join(folder, "PCA_apoptosis_" + subfolder_masked_output + "_PC1_2_" + ".png"), dpi=300, bbox_inches='tight')   # <-- save high resolution
 # plt.show()
+
+############################## PC2 vs PC3 ########################################    
+    
+plt.figure()
+
+for g in unique_groups:
+    idx = y == g
+    plt.scatter(pc2[idx], pc3[idx], label=g, s=80)
+
+plt.xlabel(f"PC2 ({pca.explained_variance_ratio_[1]*100:.1f}% var)")
+plt.ylabel(f"PC3 ({pca.explained_variance_ratio_[2]*100:.1f}% var)")
+plt.legend()
+plt.title("PCA: PC2 vs PC3")
+
+plt.tight_layout()
+
+plt.savefig(os.path.join(folder, "PCA_apoptosis_" + subfolder_masked_output + "_PC2_3"+ ".png"), dpi=300, bbox_inches='tight')   # <-- save high resolution
+     
+
+## FOR MAXIMUM/MINIMUM HEATMAPS ##
+
+import pandas as pd
+pd.DataFrame(X, index=(list_names)).to_csv(os.path.join(folder, subfolder_name + '_X_matrix.csv'), index=True)
+
+
 
 
