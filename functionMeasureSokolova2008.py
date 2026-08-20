@@ -21,12 +21,12 @@ def functionMeasureSokolova2008_counts(imgPredictionMulti, imgLabelsMulti, class
         tns[iterClass] = np.sum(tn)
         fps[iterClass] = np.sum(fp)
         fns[iterClass] = np.sum(fn)
-        return tps, tns, fps, fns
+    return tps, tns, fps, fns
 
 def functionMeasureSokolova2008FromCounts(tps, tns, fps, fns):
     """
-    Turns accumulated (or single-image) TP/TN/FP/FN arrays into the
-    Sokolova & Lapalme (2009) macro/micro metrics.
+    Turns accumulated TP/TN/FP/FN arrays into the
+    Sokolova macro/micro metrics.
     """
     numClasses = len(tps)
     eps = 1e-10
@@ -62,7 +62,7 @@ def functionMeasureSokolova2008FromCounts(tps, tns, fps, fns):
     return avgAcc, FScoreMu, FscoreM, FscoreMuBeta2, FscoreMBeta2
 
 def functionMeasureSokolova2008(imgPredictionMulti, imgLabelsMulti):
-    classes = np.union1d(np.unique(imgLabelsMulti), np.unique(imgPredictionMulti))
+    classes = np.array([0, 1, 2])
     numClasses = len(classes)
     tps = np.zeros(numClasses)
     tns = np.zeros(numClasses)
@@ -117,12 +117,50 @@ def functionMeasureSokolova2008(imgPredictionMulti, imgLabelsMulti):
 def load_label_mask(fullpath):
     return np.asarray(Image.open(fullpath))
 
-if __name__ == "__main__":
-    folder_a = r"/home/emilygv/Desktop/INTER_OBS_ANALYSIS/TestSet_Obs1_3000"
-    folder_b = r"/home/emilygv/Desktop/INTER_OBS_ANALYSIS/TestSet_Obs2_3000"
+def load_gt_mask(path):
+    """
+    Load RGB ground truth.
+    Assumes RGB channels contain class values 0,1,2.
+    """
+    img = np.array(Image.open(path))
 
-    files_a = sorted(f for f in os.listdir(folder_a) if f.endswith("_mask.png"))
-    files_b = sorted(f for f in os.listdir(folder_b) if f.endswith("_mask.png"))
+    # If RGB, take one channel
+    if img.ndim == 3:
+        img = img[:, :, 0]
+
+    return img.astype(np.uint8)
+
+
+def load_prediction_mask(path):
+    """
+    Load prediction grayscale PNG.
+    Converts:
+    0   -> background
+    50  -> mesenchyme
+    100 -> neural ectoderm
+    """
+
+    img = np.array(Image.open(path))
+
+    mask = np.zeros_like(img, dtype=np.uint8)
+
+    mask[img == 0] = 0
+    mask[img == 50] = 1
+    mask[img == 100] = 2
+
+    return mask
+
+if __name__ == "__main__":
+"""
+I last used this to test the new low intensity models, so modify it to suit whatever youre doing. 
+Here the GT images were the label images (0,1,2) and they were being compared to the segmentations (black, light grey, dark grey) 
+which first had to be converted into label images.
+"""
+    folder_a = r"/home/emily/Desktop/Validation_Images/Low_Intensity_GT" # GROUND TRUTH 
+    folder_b = r"/home/emily/Desktop/Validation_Images/Low_Intensity_Segmented_NewModel" # LOW INTENSITY MODEl
+
+    files_a = sorted(f for f in os.listdir(folder_a) if f.endswith("_cropped.png"))
+    files_b = sorted(f for f in os.listdir(folder_b) if f.endswith("_cropped.png"))
     assert len(files_a) == len(files_b), "Annotator A/B mask lists must match"
 
     classes = np.array([0,1,2])
@@ -133,8 +171,8 @@ if __name__ == "__main__":
     fns_total = np.zeros(len(classes))
 
     for fa, fb in zip(files_a, files_b):
-        labels_a = load_label_mask(os.path.join(folder_a, fa))
-        labels_b = load_label_mask(os.path.join(folder_b, fb))
+        labels_a = load_gt_mask(os.path.join(folder_a, fa))
+        labels_b = load_prediction_mask(os.path.join(folder_b, fb))
         tps, tns, fps, fns = functionMeasureSokolova2008_counts(labels_a,labels_b, classes)
 
         tps_total += tps
@@ -147,9 +185,7 @@ if __name__ == "__main__":
         print(f"{fa}: avgAcc={avgAcc_i:.4f}, F1_micro={FScoreMu_i:.4f}, F1_macro={FscoreM_i:.4f}")
 
         # Cumulative (pooled) metrics across the whole folder
-    avgAcc, FScoreMu, FscoreM, FscoreMuBeta2, FscoreMBeta2 = functionMeasureSokolova2008FromCounts(
-        tps_total, tns_total, fps_total, fns_total
-    )
+    avgAcc, FScoreMu, FscoreM, FscoreMuBeta2, FscoreMBeta2 = functionMeasureSokolova2008FromCounts(tps_total, tns_total, fps_total, fns_total)
  
     print("\n--- Cumulative metrics across folder ---")
     print(f"Average Accuracy: {avgAcc:.4f}")
@@ -157,3 +193,19 @@ if __name__ == "__main__":
     print(f"F1 (macro): {FscoreM:.4f}")
     print(f"F-beta=2 (micro): {FscoreMuBeta2:.4f}")
     print(f"F-beta=2 (macro): {FscoreMBeta2:.4f}")
+
+    print("\nPer-class metrics")
+
+    class_names = ["Background", "Mesenchyme", "Neural"]
+
+    for i, name in enumerate(class_names):
+        precision = tps_total[i] / (tps_total[i] + fps_total[i] + 1e-10)
+        recall = tps_total[i] / (tps_total[i] + fns_total[i] + 1e-10)
+        f1 = 2 * precision * recall / (precision + recall + 1e-10)
+
+        print(
+            f"{name:12s}"
+            f" Precision={precision:.4f}"
+            f" Recall={recall:.4f}"
+            f" F1={f1:.4f}"
+        )
